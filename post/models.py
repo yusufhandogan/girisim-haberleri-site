@@ -69,10 +69,10 @@ class Categories(models.Model):
 
 class Post(models.Model):
 
-    authorId = models.ForeignKey(User, on_delete=models.CASCADE)
+    authorId = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=255, unique=True)
     desc = models.CharField(max_length=255)
-    categoryID = models.ManyToManyField(Categories,)
+    categoryID = models.ForeignKey(Categories, on_delete=models.CASCADE)
     content = models.TextField(blank=False)
     href = models.SlugField(editable=False,unique=True)
     draft = models.BooleanField(default=True)
@@ -81,8 +81,6 @@ class Post(models.Model):
     date = models.DateTimeField(editable=False,null=True)
     published = models.DateField(default=timezone.now)
     featuredimage = models.ImageField(null=True, blank=True, upload_to='post')
-
-
 
 
     class Meta:

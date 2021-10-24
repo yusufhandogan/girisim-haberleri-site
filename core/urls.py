@@ -5,9 +5,10 @@ from django.conf import settings
 
 
 urlpatterns = [
-    path('admin', admin.site.urls),
+    path('admin/', admin.site.urls),
     path("api/post/",include("post.api.urls", namespace = "post")),
     path("api/categories/", include("post.api.urls", namespace = "categories") ),
-]  + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
+    path("api/author/", include("author.api.urls", namespace = "author"))
+]   + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
 
 

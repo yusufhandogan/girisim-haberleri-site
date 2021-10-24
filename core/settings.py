@@ -1,4 +1,4 @@
-
+import os
 from pathlib import Path
 
 
@@ -20,6 +20,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Local Apps
     'post',
+    'post_audio',
+    'author',
+    # 3th Apps
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -30,6 +35,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.RemoteUserMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -50,8 +58,10 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'core.wsgi.application'
 
+AUTH_USER_MODEL = "author.Account"
+
+WSGI_APPLICATION = 'core.wsgi.application'
 
 
 DATABASES = {
@@ -60,8 +70,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -91,10 +99,20 @@ USE_L10N = True
 USE_TZ = True
 
 
-
-
 STATIC_URL = '/static/'
 
 
+MEDIA_URL = "/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.RemoteUserBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+CORS_ORIGIN_ALLOW_ALL = True
