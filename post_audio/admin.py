@@ -1,3 +1,4 @@
 from django.contrib import admin
+from post_audio.models import PostAudio
 
-# Register your models here.
+admin.site.register(PostAudio)
