@@ -15,6 +15,7 @@ from post.models import Categories
 
 class PostAudio(models.Model):
 
+    id = models.AutoField(primary_key=True)
     authorId = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=255, unique=True)

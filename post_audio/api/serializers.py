@@ -7,6 +7,7 @@ class PostAudioSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostAudio
         fields = [
+            "id",
             "authorId",
             "title",
             "audioUrl",
