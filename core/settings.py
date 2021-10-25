@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'post',
     'post_audio',
     'author',
+    'comment',
     # 3th Apps
     'rest_framework',
     'corsheaders',

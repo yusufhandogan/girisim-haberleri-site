@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/post/", include("post.api.urls", namespace="post")),
     path("api/post/audio/", include("post_audio.api.urls", namespace="postaudio")),
+    path('api/comment/', include('comment.api.urls', namespace='comment')),
     path("api/categories/", include("post.api.urls", namespace="categories")),
     path("api/author/", include("author.api.urls", namespace="author"))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
