@@ -4,13 +4,11 @@ from post.models import Post
 
 
 class PostSerializer(serializers.ModelSerializer):
-    href = serializers.HyperlinkedIdentityField(
-        view_name="post:detail",
-        lookup_field= "href",
-    )
+
     class Meta:
         model = Post
         fields = [
+            "id",
             "authorId",
             "title",
             "content",
@@ -24,6 +22,7 @@ class PostSerializer(serializers.ModelSerializer):
             "published",
             "featuredimage",
             "draft",
+            "postType"
         ]
 
 

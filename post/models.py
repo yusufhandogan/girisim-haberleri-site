@@ -65,7 +65,7 @@ class Categories(models.Model):
 
 
 class Post(models.Model):
-
+    id = models.AutoField(primary_key=True)
     authorId = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=255, unique=True)
@@ -79,6 +79,7 @@ class Post(models.Model):
     date = models.DateTimeField(editable=False, null=True)
     published = models.DateField(default=timezone.now)
     featuredimage = models.ImageField(null=True, blank=True, upload_to='post')
+    postType = models.CharField(max_length=20, editable=False, default="standard")
 
     class Meta:
         ordering = ['-date', '-updated']
